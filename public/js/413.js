@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[413],{9413:(e,n,t)=>{t.r(n),t.d(n,{default:()=>l});const u={data:function(){return{}},mounted:function(){},methods:{}};const l=(0,t(1900).Z)(u,(function(){var e=this,n=e.$createElement;return(e._self._c||n)("div",[e._v("helo")])}),[],!1,null,null,null).exports}}]);
