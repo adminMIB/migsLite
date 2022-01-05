@@ -7,11 +7,17 @@ use App\Http\Controllers\API\KostumerMemberController;
 use App\Http\Controllers\API\Nicepay\NicepayController;
 use App\Http\Controllers\API\PaymentMethod\PaymentMethodController;
 use App\Http\Controllers\API\PaymentService\PaymentServiceController;
+use App\Http\Controllers\API\PembayaranController;
 
 Route::resources(["payment-service" => PaymentServiceController::class]);
 Route::resources(["payment-method" => PaymentMethodController::class]);
 
 Route::post("nicepay", [NicepayController::class, "register"])->name("index");
+Route::post("nicepay/virtual-account", [NicepayController::class, "virtual_account"])->name("nicepay.va");
+
+Route::post("nicepay-notifikasi", [NicepayController::class, "notifikasiPembayaran"])->name("index");
+
+Route::resources(["pembayaran" => PembayaranController::class]);
 
 
 Route::prefix("nicepay")->name("nicepay.")->group(function () {
