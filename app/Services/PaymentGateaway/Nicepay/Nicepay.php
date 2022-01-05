@@ -11,7 +11,7 @@ class Nicepay
     {
         self::initRequest($data);;
         BaseHttpService::endpoint("registration");
-        return   BaseHttpService::http()->registration(self::setDataToNicepayMode(self::$fixedDataNicepay))->apply()->json();
+        return  BaseHttpService::http()->registration(self::setDataToNicepayMode(self::$fixedDataNicepay))->apply()->json();
     }
 
     public static function initRequest($request)
