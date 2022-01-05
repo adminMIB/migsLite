@@ -5,20 +5,21 @@ namespace App\Services\PaymentGateaway\Nicepay;
 
 trait NicepayDefaultDataTrait
 {
-    public static $isProduction = false;
+    public static $isProduction = true;
     public static $base_url = null;
-    public static $prod_url = null;
     public static $fixed_base_url = null;
     public static $referenceNo = null;
     public static $timestamp = null;
     public static $array_default_data = null;
 
     public static $dev_url = "https://dev.nicepay.co.id/nicepay/direct/";
+    public static $prod_url = "https://www.nicepay.co.id/nicepay/direct/";
     public static $version_url = "v2/";
     public static $merchant_key = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
     public static $imid = "IONPAYTEST";
     public static $currency = "IDR";
-    public static $dbProcessUrl = "http://ptsv2.com/t/0ftrz-1519971382/post";
+    // public static $dbProcessUrl = "https://ptsv2.com/t/amrullahdev/post";
+    public static $dbProcessUrl = "http://e7ed-158-140-185-53.ngrok.io/api/nicepay-notifikasi";
 
 
     public static function baseUrl()
@@ -39,11 +40,11 @@ trait NicepayDefaultDataTrait
         $merchantToken = hash('sha256', self::$timestamp . self::$imid . self::$referenceNo . request("jumlah_pembayaran") . self::$merchant_key);
         self::$array_default_data = [
             "referenceNo" => self::$referenceNo,
-            "timeStasmp" => self::$timestamp,
+            "timeStamp" => self::$timestamp,
             "iMid" => self::$imid,
             "currency" => self::$currency,
             "dbProcessUrl" => self::$dbProcessUrl,
-            "merchantToken" => "$merchantToken",
+            "merchantToken" => "$merchantToken"
         ];
 
         return array_merge_recursive(
