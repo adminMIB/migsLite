@@ -4,7 +4,7 @@ namespace App\Services\Response\Nicepay;
 
 use App\Http\Controllers\Controller;
 
-class ConStoreResponse extends Controller
+class VirtualAccResponse extends Controller
 {
     public static $nama_bank = [
         "BMRI" => "Bank Mandiri",
@@ -47,8 +47,8 @@ class ConStoreResponse extends Controller
         "nama_pembayaran" => "goodsNm",
         "va" => "vacctNo",
         "cvs" => "payNo",
-        "tgl_kadaluarsa" => "payValidDt",
-        "waktu_kadaluarsa" => "payValidTm",
+        "tgl_kadaluarsa" => "vacctValidDt",
+        "waktu_kadaluarsa" => "vacctValidTm",
         "kode_unik_payment_gateaway" => "tXid"
     ];
 
@@ -78,9 +78,8 @@ class ConStoreResponse extends Controller
     public static function setup_response($setup_custom_response)
     {
         $setup_custom_response["metode_pembayaran"] = self::$paymentMethod[$setup_custom_response["metode_pembayaran"]];
-        $setup_custom_response["nomor_pembayaran"] =  $setup_custom_response["va"] ?? $setup_custom_response["cvs"];
-        $setup_custom_response["instansi_pembayaran"] =  @self::$nama_cvs[$setup_custom_response["kode_cvs"]] ?? @self::$nama_bank[$setup_custom_response["nama_bank"]];
-
+        $setup_custom_response["nomor_pembayaran"] =  $setup_custom_response["va"];
+        $setup_custom_response["instansi_pembayaran"] = @self::$nama_bank[$setup_custom_response["nama_bank"]];
         $setup_custom_response["kd_pembayaran_transaksi"] = 166 . substr(rand() * time(), 0, 6);
         $setup_custom_response["nama_pembayaran"] = "Pembayaran Via Nicepay PG";
 
