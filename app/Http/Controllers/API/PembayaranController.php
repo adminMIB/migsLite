@@ -15,6 +15,6 @@ class PembayaranController extends Controller
 
     public function show($id)
     {
-        return PembayaranTransaksi::find($id);
+        return PembayaranTransaksi::findOrFail($id);
     }
 }
