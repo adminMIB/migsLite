@@ -13,7 +13,7 @@ Route::resources(["payment-service" => PaymentServiceController::class]);
 Route::resources(["payment-method" => PaymentMethodController::class]);
 
 Route::post("nicepay", [NicepayController::class, "register"])->name("index");
-Route::post("nicepay/virtual-account", [NicepayController::class, "virtual_account"])->name("nicepay.va");
+Route::post("nicepay/payment/virtual-account", [NicepayController::class, "virtual_account"])->name("nicepay.va");
 
 Route::post("nicepay-notifikasi", [NicepayController::class, "notifikasiPembayaran"])->name("index");
 
