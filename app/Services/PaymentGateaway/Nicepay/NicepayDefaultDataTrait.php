@@ -18,8 +18,8 @@ trait NicepayDefaultDataTrait
     public static $merchant_key = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
     public static $imid = "IONPAYTEST";
     public static $currency = "IDR";
-    // public static $dbProcessUrl = "https://ptsv2.com/t/amrullahdev/post";
-    public static $dbProcessUrl = "http://9ea8-158-140-185-53.ngrok.io/api/nicepay-notifikasi";
+    public static $dbProcessUrl_dev = "http://9ea8-158-140-185-53.ngrok.io/api/nicepay-notifikasi";
+    public static $dbProcessUrl_prod = "http://103.146.202.162:8241/api/nicepay-notifikasi";
 
 
     public static function baseUrl()
@@ -36,6 +36,8 @@ trait NicepayDefaultDataTrait
 
     public static function setDataToNicepayMode($requestToMerger)
     {
+        $dbProcessUrl = env("NICE_PAY_DEV") ? self::$dbProcessUrl_dev :  self::$dbProcessUrl_prod;
+        dd($dbProcessUrl);
         self::getDefaultData();
         $merchantToken = hash('sha256', self::$timestamp . self::$imid . self::$referenceNo . request("jumlah_pembayaran") . self::$merchant_key);
         self::$array_default_data = [
@@ -43,7 +45,7 @@ trait NicepayDefaultDataTrait
             "timeStamp" => self::$timestamp,
             "iMid" => self::$imid,
             "currency" => self::$currency,
-            "dbProcessUrl" => self::$dbProcessUrl,
+            "dbProcessUrl" => $dbProcessUrl,
             "merchantToken" => "$merchantToken"
         ];
 
