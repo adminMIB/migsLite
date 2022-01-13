@@ -12,8 +12,9 @@ use App\Http\Controllers\API\PembayaranController;
 Route::resources(["payment-service" => PaymentServiceController::class]);
 Route::resources(["payment-method" => PaymentMethodController::class]);
 
-Route::post("nicepay", [NicepayController::class, "register"])->name("index");
+Route::post("nicepay/payment/cvs", [NicepayController::class, "register"])->name("index");
 Route::post("nicepay/payment/virtual-account", [NicepayController::class, "virtual_account"])->name("nicepay.va");
+Route::post("nicepay/payment/convenience-store", [NicepayController::class, "convenience_store"])->name("nicepay.cvs");
 
 Route::post("nicepay-notifikasi", [NicepayController::class, "notifikasiPembayaran"])->name("index");
 

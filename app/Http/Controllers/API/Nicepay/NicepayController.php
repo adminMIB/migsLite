@@ -21,6 +21,13 @@ class NicepayController
         return PembayaranTransaksi::create($response["api_data"]);
     }
 
+
+    public function convenience_store(Request $request)
+    {
+        $response = ConStoreResponse::get(VersioningApiService::version_1_0(), Nicepay::register($request));
+        return PembayaranTransaksi::create($response["api_data"]);
+    }
+
     public function virtual_account(Request $request)
     {
         $response = VirtualAccResponse::get(VersioningApiService::version_1_0(), Nicepay::register($request));
