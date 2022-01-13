@@ -8,8 +8,14 @@ use App\Services\VersioningApiService;
 trait ConvienceStore
 {
     public $mitraCode = [
-        "ALMA" => "Alfamart",
-        "INDO" => "Indomaret",
+        [
+            "key_chanel" => "ALMA",
+            "nama_chanel" => "Alfamart",
+        ],
+        [
+            "key_chanel" => "INDO",
+            "nama_chanel" => "Indomaret",
+        ]
     ];
 
     public function daftarMitraTersedia()

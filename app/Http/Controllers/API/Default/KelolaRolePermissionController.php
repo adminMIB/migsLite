@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\DefaultCtrl;
+namespace App\Http\Controllers\API\Default;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Services\PermissionService;
