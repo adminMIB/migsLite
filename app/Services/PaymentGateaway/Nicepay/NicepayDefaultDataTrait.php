@@ -37,7 +37,6 @@ trait NicepayDefaultDataTrait
     public static function setDataToNicepayMode($requestToMerger)
     {
         $dbProcessUrl = env("NICE_PAY_DEV") ? self::$dbProcessUrl_dev :  self::$dbProcessUrl_prod;
-        dd($dbProcessUrl);
         self::getDefaultData();
         $merchantToken = hash('sha256', self::$timestamp . self::$imid . self::$referenceNo . request("jumlah_pembayaran") . self::$merchant_key);
         self::$array_default_data = [
