@@ -1,6 +1,6 @@
 <?php
 
-//Default System API
+// Default System API
 
 use App\Http\Controllers\API\Default\AuditTrailController;
 use App\Http\Controllers\API\Default\AutentikasiController;

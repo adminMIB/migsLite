@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API\Default;
+
 use App\Http\Controllers\Controller;
 use App\Services\AuditTrailService;
 use Illuminate\Http\Request;
