@@ -20,15 +20,15 @@ trait ConvienceStore
 
     public function daftarMitraTersedia()
     {
-        $kode_bank = [];
-        foreach ($this->bankCode as  $value) {
-            $kode_bank[] = [
+        $mitraCode = [];
+        foreach ($this->mitraCode as  $value) {
+            $mitraCode[] = [
                 "nama_chanel" => $value["nama_chanel"],
                 "key_chanel" => $value["key_chanel"],
                 "aggregrator" => "NICEPAY",
                 "chanel" => "cvs"
             ];
         }
-        return ResponseService::get(VersioningApiService::version_1_0(), $this->mitraCode);
+        return ResponseService::get(VersioningApiService::version_1_0(), $mitraCode);
     }
 }
