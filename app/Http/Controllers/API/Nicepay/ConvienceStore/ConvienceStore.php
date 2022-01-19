@@ -6,10 +6,7 @@ use App\Services\Response\ResponseService;
 use App\Services\VersioningApiService;
 
 trait ConvienceStore
-{    
-    public $aggregrator = "NICEPAY";
-    public $chanel = "cvs";
-
+{
     public $mitraCode = [
         [
             "key_chanel" => "ALMA",
@@ -28,11 +25,10 @@ trait ConvienceStore
             $kode_bank[] = [
                 "nama_chanel" => $value["nama_chanel"],
                 "key_chanel" => $value["key_chanel"],
-                "aggregrator" => $this->aggregrator,
-                "chanel" => $this->chanel
+                "aggregrator" => "NICEPAY",
+                "chanel" => "cvs"
             ];
         }
-        
         return ResponseService::get(VersioningApiService::version_1_0(), $this->mitraCode);
     }
 }
