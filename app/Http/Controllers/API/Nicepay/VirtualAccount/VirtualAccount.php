@@ -7,6 +7,8 @@ use App\Services\VersioningApiService;
 
 trait VirtualAccount
 {
+    public $aggregrator = "NICEPAY";
+    public $chanel = "va";
     public $bankCode = [
         [
             "key_chanel" => "BMRI",
@@ -56,6 +58,15 @@ trait VirtualAccount
 
     public function daftarBankTersedia()
     {
-        return ResponseService::get(VersioningApiService::version_1_0(), $this->bankCode);
+        $kode_bank = [];
+        foreach ($this->bankCode as  $value) {
+            $kode_bank[] = [
+                "nama_chanel" => $value["nama_chanel"],
+                "key_chanel" => $value["key_chanel"],
+                "aggregrator" => "NICEPAY",
+                "chanel" => "va"
+            ];
+        }
+        return ResponseService::get(VersioningApiService::version_1_0(), $kode_bank);
     }
 }
