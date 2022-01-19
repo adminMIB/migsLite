@@ -63,8 +63,8 @@ trait VirtualAccount
             $kode_bank[] = [
                 "nama_chanel" => $value["nama_chanel"],
                 "key_chanel" => $value["key_chanel"],
-                "aggregrator" => "NICEPAY",
-                "chanel" => "va"
+                "aggregrator" => $this->aggregrator,
+                "chanel" => $this->chanel
             ];
         }
         return ResponseService::get(VersioningApiService::version_1_0(), $kode_bank);
