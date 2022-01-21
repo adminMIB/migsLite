@@ -12,7 +12,7 @@ Route::resources(["pembayaran" => PembayaranController::class]);
 Route::controller(ClientKeyController::class)->prefix("client-key")->name("client-key.")->group(function () {
     Route::get('/', 'index')->name("index");
     Route::post('/', 'store')->name("store");
-    Route::get('/{kd_client_key}', 'show')->name("update");
+    Route::get('/{kd_client_key}', 'show')->name("show");
     Route::put('/{kd_client_key}', 'update')->name("update");
     Route::put('/activated/{kd_client_key}', 'activate')->name("activate");
     Route::put('/deactivated/{kd_client_key}', 'deactivate')->name("deactivate");
