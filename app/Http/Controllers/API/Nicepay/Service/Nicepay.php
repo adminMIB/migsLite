@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\API\Nicepay\Service;
 
+use App\Models\PembayaranTransaksi;
+use Illuminate\Support\Facades\Http;
+
 
 class Nicepay
 {
@@ -43,7 +46,7 @@ class Nicepay
                 "invoice" => $invoice,
                 "key" => $data->app_key,
             ]);
-            return response($data->json(), $data->status());
+            return response($data, $data->status());
         }
 
         return response("Authorisasi gagal", 400);
