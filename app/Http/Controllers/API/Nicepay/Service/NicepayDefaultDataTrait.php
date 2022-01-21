@@ -19,7 +19,7 @@ trait NicepayDefaultDataTrait
     public static $imid = "IONPAYTEST";
     public static $currency = "IDR";
     public static $dbProcessUrl_dev = "https://ptsv2.com/t/amdev/post";
-    public static $dbProcessUrl_prod = "http://103.146.202.162:8241/api/nicepay-notifikasi";
+    public static $dbProcessUrl_prod = "https://migs.amrdev.my.id/api/nicepay/notifikasi";
 
 
     public static function baseUrl()
