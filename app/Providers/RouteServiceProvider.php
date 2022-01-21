@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\ClientKeyMiddleware;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::prefix('api')
-                ->middleware('api')
+                ->middleware(['api', ClientKeyMiddleware::class])
                 ->namespace($this->namespace)
                 ->group(base_path('routes/pg/api_nicepay.php'));
 
