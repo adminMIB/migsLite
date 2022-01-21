@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Services\PaymentGateaway\Nicepay;
+namespace App\Http\Controllers\API\Nicepay\Service;
+
 
 use Illuminate\Support\Facades\Http;
 
@@ -38,6 +39,10 @@ class BaseHttpService
 
     public function apply()
     {
+        if (!self::$_instance->successful()) {;
+            abort(self::$_instance->json(), self::$_instance->status());
+        }
+
         return self::$_instance;
     }
 }

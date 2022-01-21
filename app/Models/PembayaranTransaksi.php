@@ -22,5 +22,7 @@ class PembayaranTransaksi extends Model
         "nama_pembayaran",
         "waktu_kadaluarsa",
         "waktu_terbayar",
+        "url_notifikasi",
+        "app_key",
     ];
 }

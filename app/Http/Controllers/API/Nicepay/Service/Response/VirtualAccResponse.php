@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Services\Response\Nicepay;
+namespace App\Http\Controllers\API\Nicepay\Service\Response;
 
+use App\Http\Controllers\API\Nicepay\PaymentMethod;
 use App\Http\Controllers\Controller;
 
-class ConStoreResponse extends Controller
+class VirtualAccResponse extends Controller
 {
+
+    use PaymentMethod;
     public static $nama_bank = [
         "BMRI" => "Bank Mandiri",
         "IBBK" => "Bank International Indonesia Maybank",
@@ -26,16 +29,6 @@ class ConStoreResponse extends Controller
         "INDO" => "Indomaret",
     ];
 
-    public static $paymentMethod = [
-        "01" => "Credit Card",
-        "02" => "Virtual Account",
-        "03" => "CVS (Convenience Store)",
-        "04" => "ClickPay",
-        "05" => "E-Wallet",
-        "06" => "Payloan",
-        "08" => "QRIS",
-    ];
-
     public static $index = [
         "invoice_pembayaran" => "referenceNo",
         "jumlah_dibayarkan" => "amt",
@@ -47,8 +40,8 @@ class ConStoreResponse extends Controller
         "nama_pembayaran" => "goodsNm",
         "va" => "vacctNo",
         "cvs" => "payNo",
-        "tgl_kadaluarsa" => "payValidDt",
-        "waktu_kadaluarsa" => "payValidTm",
+        "tgl_kadaluarsa" => "vacctValidDt",
+        "waktu_kadaluarsa" => "vacctValidTm",
         "kode_unik_payment_gateaway" => "tXid"
     ];
 
@@ -70,6 +63,8 @@ class ConStoreResponse extends Controller
         }
 
         $fixed_response = self::setup_response($setup_custom_response);
+        $fixed_response["url_notifikasi"] =  request("url_notifikasi");
+        $fixed_response["app_key"] =  request("app_key");
 
         return ["api_data" => $fixed_response, "api_version" => $api_version];
     }
@@ -78,16 +73,13 @@ class ConStoreResponse extends Controller
     public static function setup_response($setup_custom_response)
     {
         $setup_custom_response["metode_pembayaran"] = self::$paymentMethod[$setup_custom_response["metode_pembayaran"]];
-        $setup_custom_response["nomor_pembayaran"] =  $setup_custom_response["va"] ?? $setup_custom_response["cvs"];
-        $setup_custom_response["instansi_pembayaran"] =  @self::$nama_cvs[$setup_custom_response["kode_cvs"]] ?? @self::$nama_bank[$setup_custom_response["nama_bank"]];
-
+        $setup_custom_response["nomor_pembayaran"] =  $setup_custom_response["va"];
+        $setup_custom_response["instansi_pembayaran"] = @self::$nama_bank[$setup_custom_response["nama_bank"]];
         $setup_custom_response["kd_pembayaran_transaksi"] = 166 . substr(rand() * time(), 0, 6);
-        $setup_custom_response["nama_pembayaran"] = "Pembayaran Via Nicepay PG";
+        $setup_custom_response["nama_pembayaran"] =  request("nama_pembayaran");
+        $setup_custom_response["url_notifikasi"] =  request("url_notifikasi");
+        $setup_custom_response["app_key"] =  request("app_key");
 
-        unset($setup_custom_response["va"]);
-        unset($setup_custom_response["cvs"]);
-        unset($setup_custom_response["kode_cvs"]);
-        unset($setup_custom_response["nama_bank"]);
 
         return  array_filter($setup_custom_response, 'strlen');
     }

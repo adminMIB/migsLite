@@ -14,4 +14,14 @@ trait PaymentMethod
         "pay-loan" => "06",
         "qris" => "08",
     ];
+
+    public static $paymentMethod = [
+        "01" => "Credit Card",
+        "02" => "Virtual Account",
+        "03" => "CVS (Convenience Store)",
+        "04" => "ClickPay",
+        "05" => "E-Wallet",
+        "06" => "Payloan",
+        "08" => "QRIS",
+    ];
 }

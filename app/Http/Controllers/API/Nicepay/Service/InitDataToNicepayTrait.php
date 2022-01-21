@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Services\PaymentGateaway\Nicepay;
+namespace App\Http\Controllers\API\Nicepay\Service;
+
 
 
 trait InitDataToNicepayTrait

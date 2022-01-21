@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PaymentGateaway\Nicepay;
+namespace App\Http\Controllers\API\Nicepay\Service;
 
 
 trait NicepayDefaultDataTrait
@@ -18,7 +18,7 @@ trait NicepayDefaultDataTrait
     public static $merchant_key = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
     public static $imid = "IONPAYTEST";
     public static $currency = "IDR";
-    public static $dbProcessUrl_dev = "http://9ea8-158-140-185-53.ngrok.io/api/nicepay-notifikasi";
+    public static $dbProcessUrl_dev = "https://ptsv2.com/t/amdev/post";
     public static $dbProcessUrl_prod = "http://103.146.202.162:8241/api/nicepay-notifikasi";
 
 
