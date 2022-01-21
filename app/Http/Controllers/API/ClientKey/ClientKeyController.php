@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\ClientKey;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Response\ResponseService;
 
@@ -23,6 +24,13 @@ class ClientKeyController extends Controller
     public function search(Request $request)
     {
         $in_client_key =  $this->clientKeyService->mencariDataClientkeyByName($request);
+        return compact('in_client_key');
+    }
+
+
+    public function show($kd_client_key)
+    {
+        $in_client_key =  $this->clientKeyService->mendapatkanDetailData($kd_client_key);
         return compact('in_client_key');
     }
 

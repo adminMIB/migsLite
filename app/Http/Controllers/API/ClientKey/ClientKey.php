@@ -12,13 +12,12 @@ class ClientKey extends Model
     protected $table = "client_key";
     protected $primaryKey = "kd_client_key";
 
+    protected $hidden = ["client_key_secret"];
     protected $fillable = [
         "kd_client_key",
         "client_key_nama",
+        "client_key_id",
         "client_key_secret",
         "client_key_status",
     ];
-
-
-    
 }

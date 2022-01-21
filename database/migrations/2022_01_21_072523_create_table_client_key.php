@@ -15,8 +15,9 @@ class CreateTableClientKey extends Migration
     {
         Schema::create('client_key', function (Blueprint $table) {
             $table->integer("kd_client_key")->primary();
-            $table->string("nama_client_key", 50);
-            $table->mediumText("client_secret");
+            $table->string("client_key_nama", 50);
+            $table->mediumText("client_key_id");
+            $table->mediumText("client_key_secret");
             $table->string("client_key_status", 10)->default("ACTIVE");
             $table->timestamps();
         });
