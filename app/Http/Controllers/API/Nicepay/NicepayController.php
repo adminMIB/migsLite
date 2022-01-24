@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\API\Nicepay;
 
 use Illuminate\Http\Request;
-use App\Models\PembayaranTransaksi;
 use App\Http\Controllers\Controller;
 use App\Services\VersioningApiService;
 use App\Http\Controllers\API\Nicepay\Service\Nicepay;
 use App\Http\Requests\ValidasiNicepayRegisterPayment;
+use App\Http\Controllers\API\Pembayaran\PembayaranTransaksi;
 use App\Http\Controllers\API\Nicepay\ConvienceStore\ConvienceStore;
 use App\Http\Controllers\API\Nicepay\VirtualAccount\VirtualAccount;
 use App\Http\Controllers\API\Nicepay\Service\Response\ConStoreResponse;
