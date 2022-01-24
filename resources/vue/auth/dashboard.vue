@@ -1,10 +1,14 @@
 <template>
    <div>
-      helo ini ada update dari branch development
+      <Pembayaran></Pembayaran>
    </div>
 </template>
 <script>
+import Pembayaran from "./pembayaran/index.vue";
 export default {
+   components: {
+      Pembayaran
+   },
    data() {
       return {
          in_data: {}

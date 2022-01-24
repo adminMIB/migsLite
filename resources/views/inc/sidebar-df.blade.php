@@ -1,12 +1,12 @@
 <aside class="main-sidebar sidebar-light-lime  gr-bg-d-blue">
     <a href="#" class="brand-link text-white">
         <img src="/file/default/data.png" alt="Data Center" class="brand-image">
-        <span class="brand-text font-weight-bolder">Base App</span>
+        <span class="brand-text font-weight-bolder">{{env('APP_NAME')}}</span>
     </a>
     <div class="sidebar">
         @auth
             <div class="user-panel  mt-3 pb-3 mb-3 d-flex">
-                <div class="image " style="align-self: center;">
+            <div class="image " style="align-self: center;">
                     <i class="fa fa-user-circle img-circle text-white align-middle fa-2x" aria-hidden="true"></i>
                 </div>
                 <div class="info">
@@ -23,7 +23,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <router-link to="/dashboard " class="nav-link text-white">
+                    <router-link to="/dashboard" class="nav-link text-white">
                         <i class="nav-icon fa fa-home  "></i>
                         <p>
                             Halaman Utama

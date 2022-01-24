@@ -37,7 +37,7 @@
                   class="font-weight-bolder text-white"
                   style="text-shadow: 2px 5px 7px rgba(0,0,0,0.53);
 "
-               >Base App</h2>
+               >MIGS LITE</h2>
             </div>
          </div>
          <div class="col-md-4 my-auto">

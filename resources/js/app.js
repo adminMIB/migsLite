@@ -27,6 +27,18 @@ import { Form } from "vform";
 window.Form = Form;
 // ===============
 
+// Label Uang Filter
+const idr = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0
+});
+
+Vue.filter("IDR", function (data) {
+    return idr.format(data);
+});
+// =============
+
 // Progress Componen
 import VueProgressBar from "vue-progressbar";
 import options from "./config/progressbar";
@@ -109,11 +121,27 @@ Vue.prototype.$api_kecamatan = "/api/alamat/kecamatan"
 Vue.prototype.$api_kelurahan = "/api/alamat/kelurahan"
 Vue.prototype.$api_kodepos = "/api/alamat/kodepos"
 
+// client key 
+Vue.prototype.$api_client_key = (data = null) => {
+    if (data != null) {
+        return `/api/client-key/${data}`
+    }
+    return "/api/client-key"
+}
+
+// Pembayaran
+Vue.prototype.$api_pembayaran = (data = null) => {
+    if (data != null) {
+        return `/api/pembayaran/${data}`
+    }
+    return "/api/pembayaran"
+}
+
 Vue.prototype.$canDoStore = false;
 Vue.prototype.$canDoUpdate = false;
 Vue.prototype.$canDoDestroy = false;
 
-Vue.filter("STATUS", function(data) {
+Vue.filter("STATUS", function (data) {
     if (data == 1) {
         return "Aktif";
     } else {

@@ -1,13 +1,20 @@
 <?php
 
 use App\Http\Controllers\API\ClientKey\ClientKeyController;
+use App\Http\Controllers\API\Pembayaran\PembayaranTransaksiController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\API\PembayaranController;
 
-Route::resources(["pembayaran" => PembayaranController::class]);
+// Route::resources(["pembayaran" => PembayaranTransaksiController::class]);
 
 // Route::prefix()
+
+Route::controller(PembayaranTransaksiController::class)
+    ->prefix("pembayaran")->name("pembayaran.")->group(function () {
+        Route::get("/", "index")->name("index");
+        Route::get("/search", "search")->name("search");
+        Route::get("/detail/{kd_pembayaran}", "show")->name("show");
+    });
 
 Route::controller(ClientKeyController::class)->prefix("client-key")->name("client-key.")->group(function () {
     Route::get('/', 'index')->name("index");

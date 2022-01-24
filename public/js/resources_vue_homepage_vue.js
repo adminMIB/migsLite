@@ -816,7 +816,7 @@ var staticRenderFns = [
               staticClass: "font-weight-bolder text-white",
               staticStyle: { "text-shadow": "2px 5px 7px rgba(0,0,0,0.53)" }
             },
-            [_vm._v("Base App")]
+            [_vm._v("MIGS LITE")]
           )
         ]
       )
