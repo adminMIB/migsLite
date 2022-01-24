@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API\Nicepay\Service;
 
-use App\Models\PembayaranTransaksi;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\API\Pembayaran\PembayaranTransaksi;
 
 
 class Nicepay
