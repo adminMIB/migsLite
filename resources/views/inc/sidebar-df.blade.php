@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-light-lime  gr-bg-d-blue">
     <a href="#" class="brand-link text-white">
         <img src="/file/default/data.png" alt="Data Center" class="brand-image">
-        <span class="brand-text font-weight-bolder">{{env('APP_NAME')}}</span>
+        <span class="brand-text font-weight-bolder">MIGS LITE</span>
     </a>
     <div class="sidebar">
         @auth
