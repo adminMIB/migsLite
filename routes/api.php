@@ -14,6 +14,9 @@ Route::controller(PembayaranTransaksiController::class)
         Route::get("/", "index")->name("index");
         Route::get("/search", "search")->name("search");
         Route::get("/detail/{kd_pembayaran}", "show")->name("show");
+        Route::get("/filter/hari-ini", "hariIni")->name("hari-ini");
+        Route::get("/filter/diterima", "seluruhDataDiterima")->name("diterima");
+        Route::get("/filter/pending", "seluruhDataPending")->name("pending");
     });
 
 Route::controller(ClientKeyController::class)->prefix("client-key")->name("client-key.")->group(function () {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 class PembayaranTransaksiController extends Controller
 {
+    use PembayaranFilterTrait;
 
     private PembayaranTransaksiService $pembayaranTransaksiService;
 

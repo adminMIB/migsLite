@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API\Pembayaran;
 
-
+use App\Http\Controllers\API\ClientKey\ClientKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,4 +26,10 @@ class PembayaranTransaksi extends Model
         "url_notifikasi",
         "app_key",
     ];
+
+
+    public function mendapatkan_data_client()
+    {
+        return $this->hasOne(ClientKey::class, "client_key_id", "app_key")->select(["client_key_nama", "client_key_id"]);
+    }
 }

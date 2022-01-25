@@ -12,7 +12,7 @@ class PembayaranTransaksiService
 
     public function sql()
     {
-        return PembayaranTransaksi::orderBy("created_at", "DESC");
+        return PembayaranTransaksi::with("mendapatkan_data_client")->orderBy("created_at", "DESC");
     }
 
     public function mendapatkanSeluruhData()
@@ -33,15 +33,15 @@ class PembayaranTransaksiService
         return $this;
     }
 
-    public function jumlahSeluruhDataPembayaran()
+    public function mendapatkanSeluruhDataPembayaranDiterima()
     {
-        $this->instance = $this->sql()->count();
+        $this->instance = $this->sql()->where("status_pembayaran", "TERBAYAR");
         return $this;
     }
 
-    public function jumlahSeluruhUangDataPembayaran()
+    public function mendapatkanSeluruhDataPembayaranPending()
     {
-        $this->instance = $this->sql()->sum("jumlah_dibayarkan");
+        $this->instance = $this->sql()->where("status_pembayaran", "MENUNGGU");
         return $this;
     }
 

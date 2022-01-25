@@ -2,7 +2,7 @@
    <div>
       <h5>Data Pembayaran</h5>
       <!-- Komponen 3 box header  -->
-      <!-- <KomponenTigaBox :in_pembayaran="in_pembayaran"></KomponenTigaBox> -->
+      <KomponenTigaBox :in_pembayaran="in_pembayaran"></KomponenTigaBox>
       <TablePembayaran :in_pembayaran="in_pembayaran"></TablePembayaran>
    </div>
 </template>
@@ -19,12 +19,32 @@ export default {
    },
    mounted() {
       this.load_client_key();
+      nv.$on("index-pembayaran-pagination", data => {
+         this.emit_on_pagination_pembayaran(data);
+      });
    },
    methods: {
       load_client_key() {
          this.$Progress.start();
          axios
             .get(this.$api_pembayaran())
+            .then(respon => {
+               this.in_pembayaran = respon.data.in_pembayaran;
+               this.$Progress.finish();
+            })
+            .catch(e => {
+               this.$Progress.fail();
+               this.$error.catch(e);
+            });
+      },
+      emit_on_pagination_pembayaran(page) {
+         this.$Progress.start();
+         axios
+            .get(this.$api_pembayaran(), {
+               params: {
+                  page: page
+               }
+            })
             .then(respon => {
                this.in_pembayaran = respon.data.in_pembayaran;
                this.$Progress.finish();

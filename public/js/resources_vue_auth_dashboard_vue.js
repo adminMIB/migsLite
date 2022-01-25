@@ -66,21 +66,44 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.load_client_key();
+    nv.$on("index-pembayaran-pagination", function (data) {
+      _this.emit_on_pagination_pembayaran(data);
+    });
   },
   methods: {
     load_client_key: function load_client_key() {
-      var _this = this;
+      var _this2 = this;
 
       this.$Progress.start();
       axios.get(this.$api_pembayaran()).then(function (respon) {
-        _this.in_pembayaran = respon.data.in_pembayaran;
+        _this2.in_pembayaran = respon.data.in_pembayaran;
 
-        _this.$Progress.finish();
+        _this2.$Progress.finish();
       })["catch"](function (e) {
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
 
-        _this.$error["catch"](e);
+        _this2.$error["catch"](e);
+      });
+    },
+    emit_on_pagination_pembayaran: function emit_on_pagination_pembayaran(page) {
+      var _this3 = this;
+
+      this.$Progress.start();
+      axios.get(this.$api_pembayaran(), {
+        params: {
+          page: page
+        }
+      }).then(function (respon) {
+        _this3.in_pembayaran = respon.data.in_pembayaran;
+
+        _this3.$Progress.finish();
+      })["catch"](function (e) {
+        _this3.$Progress.fail();
+
+        _this3.$error["catch"](e);
       });
     }
   }
@@ -145,13 +168,83 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["in_client_key"],
   data: function data() {
-    return {};
+    return {
+      in_pembayaran_total_hari_ini: 0,
+      in_pembayaran_jumlah_hari_ini: 0,
+      in_pembayaran_total_diterima: 0,
+      in_pembayaran_jumlah_diterima: 0,
+      in_pembayaran_total_pending: 0,
+      in_pembayaran_jumlah_pending: 0
+    };
   },
-  mounted: function mounted() {},
-  methods: {}
+  mounted: function mounted() {
+    this.load_box_hari_ini();
+    this.load_box_diterima();
+    this.load_box_pending();
+  },
+  methods: {
+    load_box_hari_ini: function load_box_hari_ini() {
+      var _this = this;
+
+      axios.get(this.$api_pembayaran("filter/hari-ini")).then(function (respon) {
+        _this.in_pembayaran_total_hari_ini = respon.data.in_pembayaran_total_hari_ini;
+        _this.in_pembayaran_jumlah_hari_ini = respon.data.in_pembayaran_jumlah_hari_ini;
+
+        _this.$Progress.finish();
+      })["catch"](function (e) {
+        _this.$Progress.fail();
+
+        _this.$error["catch"](e);
+      });
+    },
+    load_box_diterima: function load_box_diterima() {
+      var _this2 = this;
+
+      axios.get(this.$api_pembayaran("filter/diterima")).then(function (respon) {
+        _this2.in_pembayaran_total_diterima = respon.data.in_pembayaran_total_diterima;
+        _this2.in_pembayaran_jumlah_diterima = respon.data.in_pembayaran_jumlah_diterima;
+
+        _this2.$Progress.finish();
+      })["catch"](function (e) {
+        _this2.$Progress.fail();
+
+        _this2.$error["catch"](e);
+      });
+    },
+    load_box_pending: function load_box_pending() {
+      var _this3 = this;
+
+      axios.get(this.$api_pembayaran("filter/pending")).then(function (respon) {
+        _this3.in_pembayaran_total_pending = respon.data.in_pembayaran_total_pending;
+        _this3.in_pembayaran_jumlah_pending = respon.data.in_pembayaran_jumlah_pending;
+
+        _this3.$Progress.finish();
+      })["catch"](function (e) {
+        _this3.$Progress.fail();
+
+        _this3.$error["catch"](e);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -200,13 +293,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["in_pembayaran"],
   data: function data() {
     return {};
   },
   mounted: function mounted() {},
-  methods: {}
+  methods: {
+    pagination: function pagination() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      nv.$emit("index-pembayaran-pagination", page);
+    }
+  }
 });
 
 /***/ }),
@@ -531,6 +633,8 @@ var render = function() {
     [
       _c("h5", [_vm._v("Data Pembayaran")]),
       _vm._v(" "),
+      _c("KomponenTigaBox", { attrs: { in_pembayaran: _vm.in_pembayaran } }),
+      _vm._v(" "),
       _c("TablePembayaran", { attrs: { in_pembayaran: _vm.in_pembayaran } })
     ],
     1
@@ -558,7 +662,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "my-1" }, [
+  return _c("div", { staticClass: "my-2" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col" }, [
         _c(
@@ -573,7 +677,7 @@ var render = function() {
                   _c("div", [_vm._v("Total")]),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bolder" }, [
-                    _vm._v(_vm._s(299))
+                    _vm._v(_vm._s(_vm.in_pembayaran_total_hari_ini))
                   ])
                 ]),
                 _vm._v(" "),
@@ -581,7 +685,9 @@ var render = function() {
                   _c("div", [_vm._v("Jumlah")]),
                   _vm._v(" "),
                   _c("h5", { staticClass: "font-weight-bolder" }, [
-                    _vm._v(_vm._s(_vm._f("IDR")(1000000)))
+                    _vm._v(
+                      _vm._s(_vm._f("IDR")(_vm.in_pembayaran_jumlah_hari_ini))
+                    )
                   ])
                 ])
               ])
@@ -598,10 +704,24 @@ var render = function() {
             _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "p-2" }, [
-              _c("div", [_vm._v("Jumlah")]),
-              _vm._v(" "),
-              _c("h5", { staticClass: "font-weight-bolder" }, [
-                _vm._v(_vm._s(_vm._f("IDR")(1000000)))
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col" }, [
+                  _c("div", [_vm._v("Total")]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bolder" }, [
+                    _vm._v(_vm._s(_vm.in_pembayaran_total_diterima))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col" }, [
+                  _c("div", [_vm._v("Jumlah")]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bolder" }, [
+                    _vm._v(
+                      _vm._s(_vm._f("IDR")(_vm.in_pembayaran_jumlah_diterima))
+                    )
+                  ])
+                ])
               ])
             ])
           ]
@@ -616,10 +736,24 @@ var render = function() {
             _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "p-2" }, [
-              _c("div", [_vm._v("Total")]),
-              _vm._v(" "),
-              _c("h5", { staticClass: "font-weight-bolder" }, [
-                _vm._v(_vm._s(299))
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col" }, [
+                  _c("div", [_vm._v("Total")]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bolder" }, [
+                    _vm._v(_vm._s(_vm.in_pembayaran_total_pending))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col" }, [
+                  _c("div", [_vm._v("Jumlah")]),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bolder" }, [
+                    _vm._v(
+                      _vm._s(_vm._f("IDR")(_vm.in_pembayaran_jumlah_pending))
+                    )
+                  ])
+                ])
               ])
             ])
           ]
@@ -633,31 +767,43 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-d-blue rounded text-left" }, [
-      _c("div", { staticClass: "h6 font-weight-bolder p-2" }, [
-        _vm._v("Hari ini")
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "gr-bg-d-blue text-white rounded text-left" },
+      [
+        _c("div", { staticClass: "h6 font-weight-bolder p-2" }, [
+          _vm._v("Hari ini")
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-d-blue rounded text-left" }, [
-      _c("div", { staticClass: "h6 font-weight-bolder p-2" }, [
-        _vm._v("Jumlah Transaksi")
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "gr-bg-d-blue text-white rounded text-left" },
+      [
+        _c("div", { staticClass: "h6 font-weight-bolder p-2" }, [
+          _vm._v("Pembayaran Diteirma")
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "bg-d-blue rounded text-left" }, [
-      _c("div", { staticClass: "h6 font-weight-bolder p-2" }, [
-        _vm._v("Total Transaksi")
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "gr-bg-d-blue text-white rounded text-left" },
+      [
+        _c("div", { staticClass: "h6 font-weight-bolder p-2" }, [
+          _vm._v("Pembayaran Pending")
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -691,7 +837,7 @@ var render = function() {
         _c(
           "tbody",
           _vm._l(_vm.in_pembayaran.data, function(pembayaran, i) {
-            return _c("tr", { key: i }, [
+            return _c("tr", { key: i, staticClass: "text-center" }, [
               _c("td", [_vm._v(_vm._s(i + 1))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(pembayaran.metode_pembayaran))]),
@@ -700,17 +846,35 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(pembayaran.invoice_pembayaran))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(pembayaran.jumlah_dibayarkan))]),
+              _c("td", [
+                _vm._v(_vm._s(_vm._f("IDR")(pembayaran.jumlah_dibayarkan)))
+              ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(pembayaran.status_pembayaran))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "small" }, [
+                _vm._v(
+                  _vm._s(
+                    pembayaran.mendapatkan_data_client
+                      ? pembayaran.mendapatkan_data_client.client_key_nama
+                      : "-"
+                  )
+                )
+              ]),
               _vm._v(" "),
               _vm._m(1, true)
             ])
           }),
           0
         )
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _c("pagination", {
+        attrs: { data: _vm.in_pembayaran },
+        on: { "pagination-change-page": _vm.pagination }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -719,22 +883,22 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "text-center", attrs: { width: "25" } }, [
-          _vm._v("#")
-        ]),
+      _c("tr", { staticClass: "text-center" }, [
+        _c("th", { attrs: { width: "25" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Metode")]),
+        _c("th", [_vm._v("Metode")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Instansi")]),
+        _c("th", [_vm._v("Instansi")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Invoice")]),
+        _c("th", [_vm._v("Invoice")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Jumlah")]),
+        _c("th", [_vm._v("Jumlah")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Status")]),
+        _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center", attrs: { width: "25" } }, [
+        _c("th", [_vm._v("Client")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "25" } }, [
           _c("i", {
             staticClass: "fa fa-eye",
             attrs: { "aria-hidden": "true" }
