@@ -48,7 +48,7 @@ class ClientKeyService extends Controller
                     "Nama Client" => $q->client_key_nama,
                     "Client ID" => $q->client_key_id,
                     "Client Status" => $q->client_key_status,
-                    "Dibuat" => $q->created_at->format("D,d M Y"),
+                    "Dibuat" => $q->created_at->format("D,d M Y") ?? '-',
                 ];
             });
     }
