@@ -29,7 +29,7 @@ class PembayaranTransaksiController extends Controller
 
     public function show($kd_pembayaran)
     {
-        $in_pembayaran = $this->pembayaranTransaksiService->mendapatkanSatuData($kd_pembayaran);
+        $in_pembayaran =  $this->pembayaranTransaksiService->mendapatkanSatuData($kd_pembayaran)->getWithMap();
         return compact('in_pembayaran');
     }
 }

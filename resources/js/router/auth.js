@@ -158,6 +158,35 @@ const routes = [
         name: "kostumer-member.update"
     },
 
+
+    {
+        path: "/pembayaran",
+        component: () => import("../../vue/auth/pembayaran/index.vue"),
+        name: "pembayaran.index"
+    },
+
+    {
+        path: "/pembayaran/:kd_pembayaran",
+        component: () => import("../../vue/auth/pembayaran/show.vue"),
+        name: "pembayaran.show"
+    },
+
+    {
+        path: "/client-key",
+        component: () => import("../../vue/auth/client-key/index.vue"),
+        name: "client-key.index"
+    },
+    {
+        path: "/client-key/create",
+        component: () => import("../../vue/auth/client-key/create.vue"),
+        name: "client-key.store"
+    },
+    {
+        path: "/client-key/:kd_client_key",
+        component: () => import("../../vue/auth/client-key/show.vue"),
+        name: "client-key.show"
+    },
+
     {
         path: "/*",
         component: () => import("../../vue/404.vue"),

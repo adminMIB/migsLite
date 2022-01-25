@@ -17,20 +17,20 @@ class ClientKeyController extends Controller
 
     public function index()
     {
-        $in_client_key =  $this->clientKeyService->mendapatkanSeluruhDataClientKey();
+        $in_client_key =  $this->clientKeyService->mendapatkanSeluruhDataClientKey()->apply()->paginate($this->paginate);
         return compact('in_client_key');
     }
 
     public function search(Request $request)
     {
-        $in_client_key =  $this->clientKeyService->mencariDataClientkeyByName($request);
+        $in_client_key =  $this->clientKeyService->mencariDataClientkeyByName($request)->apply()->paginate($this->paginate);
         return compact('in_client_key');
     }
 
 
     public function show($kd_client_key)
     {
-        $in_client_key =  $this->clientKeyService->mendapatkanDetailData($kd_client_key);
+        $in_client_key =  $this->clientKeyService->mendapatkanDetailData($kd_client_key)->applyWithMap();
         return compact('in_client_key');
     }
 

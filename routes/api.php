@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resources(["pembayaran" => PembayaranTransaksiController::class]);
 
-// Route::prefix()
-
 Route::controller(PembayaranTransaksiController::class)
     ->prefix("pembayaran")->name("pembayaran.")->group(function () {
         Route::get("/", "index")->name("index");
@@ -17,6 +15,7 @@ Route::controller(PembayaranTransaksiController::class)
         Route::get("/filter/hari-ini", "hariIni")->name("hari-ini");
         Route::get("/filter/diterima", "seluruhDataDiterima")->name("diterima");
         Route::get("/filter/pending", "seluruhDataPending")->name("pending");
+        Route::get("/filter/pembayaran-akhir", "pembayaranAkhir")->name("terakhir");
     });
 
 Route::controller(ClientKeyController::class)->prefix("client-key")->name("client-key.")->group(function () {

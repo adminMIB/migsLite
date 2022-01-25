@@ -57,6 +57,7 @@ class ConStoreResponse extends Controller
         $setup_custom_response["nama_pembayaran"] =  request("nama_pembayaran");
         $setup_custom_response["url_notifikasi"] =  request("url_notifikasi");
         $setup_custom_response["app_key"] =  request("app_key");
+        $setup_custom_response["aggregator"] =  "NICEPAY";
 
         return  array_filter($setup_custom_response, 'strlen');
     }
