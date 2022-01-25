@@ -142,7 +142,7 @@ Vue.prototype.$canDoUpdate = false;
 Vue.prototype.$canDoDestroy = false;
 
 Vue.filter("STATUS", function (data) {
-    if (data == 1) {
+    if (data == 1 || data == "true") {
         return "Aktif";
     } else {
         return "Nonaktif";
