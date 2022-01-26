@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\Nicepay\NicepayController;
 use App\Http\Controllers\API\ClientKey\ClientKeyController;
 use App\Http\Controllers\API\Pembayaran\PembayaranTransaksiController;
-use Illuminate\Support\Facades\Route;
 
 
 // Route::resources(["pembayaran" => PembayaranTransaksiController::class]);
