@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::resources(["pembayaran" => PembayaranTransaksiController::class]);
 
+Route::post("notifikasi", [NicepayController::class, "notifikasiPembayaran"])->name("nicepay.notifikasi");
+
 Route::controller(PembayaranTransaksiController::class)
     ->prefix("pembayaran")->name("pembayaran.")->group(function () {
         Route::get("/", "index")->name("index");
