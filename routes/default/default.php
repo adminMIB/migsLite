@@ -42,7 +42,7 @@ Route::middleware(['auth:api', "akses"])->group(function () {
         Route::get("{kd_role}", [KelolaRolePermissionController::class, "index"])->name('index');
         Route::get("{kd_role}/pencarian", [KelolaRolePermissionController::class, "search"])->name('search');
         Route::post("{kd_role}", [KelolaRolePermissionController::class, "store"])->name('store');
-        Route::delete("{kd_impl_permission}", [KelolaRolePermissionController::class, "destroy"])->name('destroy');
+        Route::delete("{kd_role}/{kd_impl_permission}", [KelolaRolePermissionController::class, "destroy"])->name('destroy');
     });
 
     Route::apiResources(['audit-trail' => AuditTrailController::class], [
