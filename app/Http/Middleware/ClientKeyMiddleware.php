@@ -21,7 +21,7 @@ class ClientKeyMiddleware
         $client_id  = $request->header("client-id");
         $client_secret  = $request->header("client-secret");
         $client = DB::table('client_key')->where("client_key_id", $client_id)->where("client_key_status", "ACTIVE")->first();
-        if (!$client) {
+        if ($client == null) {
             abort(400, "Client id tidak ditemukan");
         }
 
