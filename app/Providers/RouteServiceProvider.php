@@ -46,7 +46,7 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::prefix('api')
                 ->middleware(['api', ClientKeyMiddleware::class])
-                ->middleware('api')
+                // ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/pg/api_nicepay.php'));
 
