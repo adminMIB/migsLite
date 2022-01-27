@@ -60,6 +60,14 @@
                 @endforeach
 
                 @auth
+                <li class="nav-item">
+                    <router-link to="/ubah-password" class="nav-link text-white">
+                        <i class="nav-icon fa fa-cog  "></i>
+                        <p>
+                            Ubah Password
+                        </p>
+                    </router-link>
+                </li>
                     <li class="nav-item">
                         <a href=" {{ route('logout') }} " class="nav-link text-white"
                             onclick="event.preventDefault(); document.getElementById('logoutForm').submit()">

@@ -85,4 +85,18 @@ class ClientKeyService extends Controller
             "client_key_status" => "ACTIVE"
         ]);
     }
+
+    public function menghapusData($kd_client_key)
+    {
+        return ClientKey::find($kd_client_key)->delete();
+    }
+
+    public function melakukanResetPadaClientSecret($kd_client_key)
+    {
+        $client_sercret = Str::random(20);
+        $data["client_key_secret"] = Hash::make($client_sercret);
+        $data["client_key_secret_unhashed"] = $client_sercret;
+        ClientKey::find($kd_client_key)->update($data);
+        return $data;
+    }
 }

@@ -5,6 +5,11 @@ const routes = [
         name: "home"
     },
     {
+        path: "/ubah-password",
+        component: () => import("../../vue/auth/pengaturan/ubah-password.vue"),
+        name: "ubah-password"
+    },
+    {
         path: "/dashboard",
         component: () => import("../../vue/auth/dashboard.vue"),
         name: "dashboard"
@@ -180,6 +185,11 @@ const routes = [
         path: "/client-key/create",
         component: () => import("../../vue/auth/client-key/create.vue"),
         name: "client-key.store"
+    },
+    {
+        path: "/client-key/edit/:kd_client_key",
+        component: () => import("../../vue/auth/client-key/edit.vue"),
+        name: "client-key.update"
     },
     {
         path: "/client-key/:kd_client_key",

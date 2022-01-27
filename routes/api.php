@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Nicepay\NicepayController;
 use App\Http\Controllers\API\ClientKey\ClientKeyController;
+use App\Http\Controllers\API\Password\UbahPasswordController;
 use App\Http\Controllers\API\Pembayaran\PembayaranTransaksiController;
 
 
-// Route::resources(["pembayaran" => PembayaranTransaksiController::class]);
+Route::put("ubah-password", [UbahPasswordController::class, "ubah_password"])->name("password-ubah");
 
 Route::post("nicepay/notifikasi", [NicepayController::class, "notifikasiPembayaran"])->name("nicepay.notifikasi");
 
@@ -29,6 +30,8 @@ Route::controller(ClientKeyController::class)->prefix("client-key")->name("clien
     Route::put('/activated/{kd_client_key}', 'activate')->name("activate");
     Route::put('/deactivated/{kd_client_key}', 'deactivate')->name("deactivate");
     Route::get('/search', 'search')->name("search");
+    Route::delete('/{kd_client_key}', 'destory')->name("destroy");
+    Route::put('/reset-client/{kd_client_key}', 'resetClient')->name("reset-secret");
 });
 
 Route::middleware(['auth:api', "akses"])->group(function () {

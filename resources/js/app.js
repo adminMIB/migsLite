@@ -93,6 +93,11 @@ import konfirmasiHapus from "./config/delete_confirmation";
 window.konfirmasiHapus = konfirmasiHapus;
 // ====
 
+// alert konfirmasi
+import AlertKonfirmasi from "./config/alert_konfirmasi";
+window.alertKonfirmasi = AlertKonfirmasi;
+// ====
+
 // Komponen
 Vue.component("pagination", require("laravel-vue-pagination"));
 Vue.component("kosong", require("./components/kosong.vue").default);

@@ -57,4 +57,15 @@ class ClientKeyController extends Controller
         $this->clientKeyService->deaktivasiDataClientKey($kd_client_key);
         return ResponseService::update($kd_client_key);
     }
+
+    public function resetClient($kd_client_key)
+    {
+        return $this->clientKeyService->melakukanResetPadaClientSecret($kd_client_key);
+    }
+
+    public function destory($kd_client_key)
+    {
+        $this->clientKeyService->menghapusData($kd_client_key);
+        return ResponseService::delete($kd_client_key);
+    }
 }

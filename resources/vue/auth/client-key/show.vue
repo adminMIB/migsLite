@@ -2,7 +2,6 @@
    <div>
       <kembali></kembali>
       <h5>Detail Client</h5>
-      <!-- Komponen 3 box header  -->
       <section v-if="in_client_key">
          <KomponenDataClient
             :in_client_key="in_client_key"

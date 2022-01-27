@@ -19,6 +19,9 @@ export default {
       nv.$on("index-clientkey-pagination", data => {
          this.emit_on_pagination(data);
       });
+      nv.$on("index-clientkey-reload", data => {
+         this.load_client_key();
+      });
    },
    methods: {
       load_client_key() {

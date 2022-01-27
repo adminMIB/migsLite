@@ -74,7 +74,7 @@ class PembayaranTransaksiService
                 "Nama Pembayaran" => $q->nama_pembayaran,
                 "Kadaluarsa" =>  date("D, d M Y", strtotime($q->waktu_kadaluarsa)),
                 "Status Pembayaran" => $q->status_pembayaran,
-                "Waktu Pembayaran" => date("D, d M Y", strtotime($q->waktu_terbayar)),
+                "Waktu Pembayaran" =>  $q->waktu_terbayar ?  date("D, d M Y", strtotime($q->waktu_terbayar)) : "-",
                 "URL Notifikasi" => $q->url_notifikasi,
                 "App Key" => $q->app_key,
                 "Nama Client" => $q->mendapatkan_data_client["client_key_nama"] ?? '-',
