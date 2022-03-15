@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Artajasa\Signal;
 
 use App\Http\Controllers\API\Artajasa\ArtajasaService;
+use Illuminate\Http\Request;
 
 class SignalController
 {
