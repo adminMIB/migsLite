@@ -59,6 +59,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/default/default.php'));
 
+            Route::prefix('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/delivery/api_jet_express.php'));
+
 
             Route::middleware('web')
                 ->namespace($this->namespace)
