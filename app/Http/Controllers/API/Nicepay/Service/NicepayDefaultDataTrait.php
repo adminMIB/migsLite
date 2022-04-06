@@ -15,8 +15,15 @@ trait NicepayDefaultDataTrait
     public static $dev_url = "https://dev.nicepay.co.id/nicepay/direct/";
     public static $prod_url = "https://www.nicepay.co.id/nicepay/direct/";
     public static $version_url = "v2/";
+
+    // prod
     public static $merchant_key = "vYMsKr7XsXdkePynvQRD+3tfsNkH/ZwN35HeCwQMPyDeGYb+iDVUd2AU9ztQu6rpTtsAhCM0BONkM8LHbdN0YQ==";
     public static $imid = "HAMZAHBTK1";
+
+    // dev
+    // public static $merchant_key = "33F49GnCMS1mFYlGXisbUDzVf2ATWCl9k3R++d5hDd3Frmuos/XLx8XhXpe+LDYAbpGKZYSwtlyyLOtS/8aD7A==";
+    // public static $imid = "IONPAYTEST";
+
     public static $currency = "IDR";
 
     // public static $dbProcessUrl_dev = "https://ptsv2.com/t/alibelucky/post";
